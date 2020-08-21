@@ -10,8 +10,8 @@
 <body>
 <h2>excel data upload to server using servlet</h2>
 <form id="form">
-    <label for="myfile">Select an excel file:</label>
-    <input type="file" id="myfile" name="myfile"><br><br>
+    <label for="file">Select an excel file:</label>
+    <input type="file" id="file" name="myfile"><br><br>
     <input type="submit">
 </form>
 <div id="excel-content">

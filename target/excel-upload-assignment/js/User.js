@@ -1,6 +1,5 @@
 (function(){
     SystechSkulJsLib.submit.call({
-        dataUrl: 'user',
-
+        dataUrl: 'FileUploadServlet',
     });
 })();
