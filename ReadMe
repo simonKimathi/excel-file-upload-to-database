@@ -1,0 +1,2 @@
+#this is a servlet application to upload servlet to database
+it uploads by using servlet configured by web.xml
