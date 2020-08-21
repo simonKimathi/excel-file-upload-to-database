@@ -1,34 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <script src="jquery-2.1.4.js"></script>
-    <script lang="javascript" src="xlsx.full.min.js"></script>
-    <link href="css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>excel file uploader</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 
     <script src="./js/app.js"></script>
 </head>
 
 <body>
-<h2>excel data upload to server using servlet</h2>
-<form id="form" action = "FileHandler" method = "post" enctype = "multipart/form-data">
-    <label for="file">Select an excel file:</label>
-    <input type="file" id="file" name="myfile"><br><br>
-    <input type="submit">
-</form>
-<div id="excel-content">
+<div id=center">
+    <h2 id="header">excel data upload to server using servlet</h2>
+    <form id="form" action = "FileHandler" method = "post" enctype = "multipart/form-data">
+        <label for="file">Select an excel file:</label>
+        <input type="file" id="file" name="myfile" onchange="return this.fileValidation()"><br><br>
+        <input type="submit" id="button">
+    </form>
+    <div id="excel-content">
 
+    </div>
 </div>
-<script>
-    $('#myfile').change(function(e){
-        var reader = new FileReader();
-        reader.readAsArrayBuffer(e.target.files[0]);
-        reader.onload = function(e) {
-            var data = new Uint8Array(reader.result);
-            var wb = XLSX.read(data,{type:'array'});
-            var htmlstr = XLSX.write(wb,{sheet:"sheet no1", type:'binary',bookType:'html'});
-            $('#excel-content')[0].innerHTML += htmlstr;
-        }
-    });
-</script>
-
 </body>
 </html>
