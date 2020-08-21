@@ -37,7 +37,7 @@ public class user_servlet extends HttpServlet {
     private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
     private static final int MAX_REQUEST_SIZE = 1024 * 1024;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -130,8 +130,8 @@ public class user_servlet extends HttpServlet {
                 }
             }
 
-            request.setAttribute("message" , "Your data has been uploaded!");
-            // displays done.jsp page after upload finished
+            PrintWriter out = response.getWriter();
+            out.println("data uploaded successfully");
 
 
         } catch (FileUploadException ex) {
