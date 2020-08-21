@@ -2,8 +2,16 @@ package com.excelFileUpload.User.model;
 
 public class User {
     String name;
-    int age;
+    double age;
     String town;
+
+    public User(String name, String town, double age) {
+        this.name = name;
+        this.town = town;
+        this.age = age;
+    }
+
+
 
     public String getName() {
         return name;
@@ -13,11 +21,11 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
+    public double getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(double age) {
         this.age = age;
     }
 

@@ -1,6 +1,7 @@
 package com.excelFileUpload.User.servlet;
 
 
+import com.excelFileUpload.User.model.User;
 import com.excelFileUpload.utilities.DbConnection;
 import com.mysql.cj.result.Row;
 import org.apache.commons.fileupload.FileItem;
@@ -21,9 +22,12 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -112,8 +116,31 @@ public class userServlet extends HttpServlet {
 
                     Sheet sheet=workbook.getSheetAt(0);
 
-                    Row row;
-                    DataFormatter formatter = new DataFormatter(Locale.US);
+                   // Row row;
+                    Iterator<org.apache.poi.ss.usermodel.Row> itr = sheet.iterator();
+                    List<User> models = new ArrayList<>();
+                    int numRow = 0;
+                    while (itr.hasNext()) {
+                        if (numRow != 0) {
+                            org.apache.poi.ss.usermodel.Row row = itr.next();
+                            User userModel = new User(
+                                    row.getCell(0).getStringCellValue(),
+                                    row.getCell(2).getStringCellValue(),
+                                    row.getCell(1).getNumericCellValue()
+                            );
+                            models.add(userModel);
+                        } else {
+                            itr.next();
+                            numRow++;
+                        }
+                    }
+                    models.forEach(list -> {
+                        addToDb(list);
+                    });
+
+
+
+                    /*DataFormatter formatter = new DataFormatter(Locale.US);
                     for(int i=1; i<=sheet.getLastRowNum(); i++)
                     {
                         try {
@@ -126,7 +153,7 @@ public class userServlet extends HttpServlet {
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }
-                    }
+                    }*/
                 }
             }
 
@@ -140,4 +167,20 @@ public class userServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
+    private void addToDb(User list) {
+        try {
+            ServletContext scx = getServletContext();
+            Connection dbConnection = (Connection) scx.getAttribute("dbConnection");
+            PreparedStatement ps = dbConnection.prepareStatement("insert into user(name,age,town) values(?,?,?)");
+
+            ps.setString(1, list.getName());
+            ps.setDouble(2, list.getAge());
+            ps.setString(3, list.getTown());
+            ps.executeUpdate();;
+
+        } catch (SQLException ex) {
+
+        }
+    }
 }
+
