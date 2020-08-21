@@ -1,6 +1,5 @@
 #this is a servlet application to upload servlet to database
 --it uploads by using servlet configured by web.xml   
-  --the project uses org.apache.poi.ss.usermodel to read the excel file  in user_servlet.class
-  -- it is accessed via http://localhost:8080/excel-upload-assignment/FileUploadServlet
-  
- The default index uses javascript to read the file
+  --the project uses org.apache.poi.ss.usermodel to read the excel file  in userServlet.class
+  -- it is accessed via http://localhost:8080/excel-upload-assignment/
+

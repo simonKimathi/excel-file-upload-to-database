@@ -2,12 +2,13 @@ package com.excelFileUpload.User.servlet;
 
 
 import com.excelFileUpload.User.model.User;
-import com.excelFileUpload.utilities.DbConnection;
-import com.mysql.cj.result.Row;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -25,15 +26,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 @WebServlet(name = "FileHandler", urlPatterns = {"/FileHandler"})
 public class userServlet extends HttpServlet {
@@ -116,7 +108,7 @@ public class userServlet extends HttpServlet {
 
                     Sheet sheet=workbook.getSheetAt(0);
 
-                   // Row row;
+                    // Row row;
                     Iterator<org.apache.poi.ss.usermodel.Row> itr = sheet.iterator();
                     List<User> models = new ArrayList<>();
                     int numRow = 0;
