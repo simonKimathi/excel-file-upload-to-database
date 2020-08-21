@@ -4,12 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <servlet>
+<!--  <servlet>
     <servlet-name>FileUploadServlet</servlet-name>
     <servlet-class>com.excelFileUpload.User.servlet.user_servlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FileUploadServlet</servlet-name>
     <url-pattern>/FileUploadServlet</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>-->
+  <context-param>
+    <param-name>tempfile.dir</param-name>
+    <param-value>tmpfiles</param-value>
+  </context-param>
 </web-app>
