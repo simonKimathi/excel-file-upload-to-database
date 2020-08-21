@@ -49,6 +49,7 @@ public class user_servlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UploadServlet at " + request.getContextPath() + "</h1>");
+            out.println( "<input type=\"file\" id=\"myfile\" name\"myfile\">");
             out.println("</body>");
             out.println("</html>");
         } finally {
