@@ -4,14 +4,11 @@
     <description>ServletContextListener</description>
     <listener-class>com.excelFileUpload.utilities.listener.FileLocationContextListener</listener-class>
   </listener>
-<servlet>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <servlet-class>com.excelFileUpload.User.servlet.userServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <url-pattern>/FileUploadServlet</url-pattern>
-  </servlet-mapping>
+  <session-config>
+    <session-timeout>
+      30
+    </session-timeout>
+  </session-config>
   <context-param>
     <param-name>tempfile.dir</param-name>
     <param-value>tmpfiles</param-value>

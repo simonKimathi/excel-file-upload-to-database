@@ -9,7 +9,7 @@
 
 <body>
 <h2>excel data upload to server using servlet</h2>
-<form id="form">
+<form id="form" action = "FileHandler" method = "post" enctype = "multipart/form-data">
     <label for="file">Select an excel file:</label>
     <input type="file" id="file" name="myfile"><br><br>
     <input type="submit">

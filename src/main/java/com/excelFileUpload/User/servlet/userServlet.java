@@ -10,6 +10,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+@WebServlet(name = "FileHandler", urlPatterns = {"/FileHandler"})
 public class userServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -37,11 +39,9 @@ public class userServlet extends HttpServlet {
     private static final String DATA_DIRECTORY = "data";
     private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
     private static final int MAX_REQUEST_SIZE = 1024 * 1024;
-    DbConnection dbConnection;
     String path;
     public void init() throws ServletException {
         path = getServletContext().getInitParameter("file-upload");
-        dbConnection = (DbConnection) getServletContext().getAttribute("dbConnection");
         File f = new File("uploads");
         if (!f.exists()) {
             System.out.println("");
